@@ -5,6 +5,24 @@
         prism:ViewModelLocator.AutoWireViewModel="True"
         Title="{Binding Title}" Height="350" Width="525" >
     <Grid>
-        <ContentControl prism:RegionManager.RegionName="ContentRegion" />
+        <DockPanel>
+            <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Margin="10">
+                <Button Content="Get" Command="{Binding GetCommand}" Padding="10,2,10,2" />
+                <Rectangle Width="20" />
+                <TextBlock Text="Latitude" />
+                <TextBox Width="100" Text="{Binding Latitude.Value}" />
+                <Rectangle Width="20" />
+                <TextBlock Text="Longitude" />
+                <TextBox Width="100" Text="{Binding Longitude.Value}" />
+            </StackPanel>
+            <TextBlock DockPanel.Dock="Top">
+                <Run Text="Time is UTC, " />
+                <Run Text="Latitude=" />
+                <Run Text="{Binding Weather.Value.Latitude}" />
+                <Run Text=", Longitude=" />
+                <Run Text="{Binding Weather.Value.Longitude}" />
+            </TextBlock>
+            <DataGrid ItemsSource="{Binding Weather.Value.Forecasts}" />
+        </DockPanel>
     </Grid>
 </Window>
