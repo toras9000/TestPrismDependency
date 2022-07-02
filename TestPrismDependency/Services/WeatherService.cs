@@ -1,15 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Json;
-using System.Text;
 using System.Threading.Tasks;
+using TestPrismDependency.Data;
 
 namespace TestPrismDependency.Services;
-
-public record Forecast(DateTime Time, double Temperature, double Humidity, double Rain);
-public record Weather(double Latitude, double Longitude, double Elevation, Forecast[] Forecasts);
 
 public interface IWeatherService
 {

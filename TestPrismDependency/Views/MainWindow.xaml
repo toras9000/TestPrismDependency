@@ -15,13 +15,16 @@
                 <TextBlock Text="Longitude" />
                 <TextBox Width="100" Text="{Binding Longitude.Value}" />
             </StackPanel>
-            <TextBlock DockPanel.Dock="Top">
-                <Run Text="Time is UTC, " />
-                <Run Text="Latitude=" />
-                <Run Text="{Binding Weather.Value.Latitude}" />
-                <Run Text=", Longitude=" />
-                <Run Text="{Binding Weather.Value.Longitude}" />
-            </TextBlock>
+            <DockPanel DockPanel.Dock="Top" Margin="10">
+                <Button DockPanel.Dock="Right" Content="Save" Command="{Binding SaveCommand}" />
+                <TextBlock DockPanel.Dock="Top">
+                    <Run Text="Time is UTC, " />
+                    <Run Text="Latitude=" />
+                    <Run Text="{Binding Weather.Value.Latitude}" />
+                    <Run Text=", Longitude=" />
+                    <Run Text="{Binding Weather.Value.Longitude}" />
+                </TextBlock>
+            </DockPanel>
             <DataGrid ItemsSource="{Binding Weather.Value.Forecasts}" />
         </DockPanel>
     </Grid>

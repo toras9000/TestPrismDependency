@@ -1,7 +1,7 @@
 ﻿using System.Windows;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.DependencyInjection.Extensions;
 using Prism.Bridge.MicrosoftDependency;
 using Prism.Ioc;
 using TestPrismDependency.Data;
@@ -31,9 +31,14 @@ namespace TestPrismDependency
                 services.Configure<DefaultSettings>(configuration.GetSection("DefaultSettings"));
 
                 services.AddHttpClient();
+
+                services.AddDbContextFactory<WeatherDbContext>(builder => builder.UseSqlite(configuration.GetConnectionString("TestDatabase")));
+
             });
 
             containerRegistry.Register<IWeatherService, OpenMeteoWeatherService>();
+            containerRegistry.Register<IWeatherRecorder, EfCoreWeatherRecorder>();
+            containerRegistry.Register<IWeatherRecorderMigrator, EfCoreWeatherRecorderMigrator>();
         }
     }
 }
