@@ -26,7 +26,7 @@ public class OpenMeteoWeatherService : IWeatherService
     public async Task<Weather> GetWeatherAsync(double latitude, double longitude)
     {
         var reqUri = $"{ApiBaseUri}?latitude={latitude}&longitude={longitude}&hourly=temperature_2m,relativehumidity_2m,rain";
-        var result = await this.client.GetFromJsonAsync<ResultData>(reqUri).ConfigureAwait(false);
+        var result = await this.client.GetFromJsonAsync<ResultData>(reqUri).ConfigureAwait(false) ?? throw new Exception("Failed: API result");
         if (result.error != null
          || result.hourly.time.Length != result.hourly.temperature_2m.Length
          || result.hourly.time.Length != result.hourly.relativehumidity_2m.Length

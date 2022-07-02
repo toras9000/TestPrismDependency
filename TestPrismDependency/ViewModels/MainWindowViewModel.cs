@@ -35,7 +35,7 @@ namespace TestPrismDependency.ViewModels
                 .SetValidateNotifyError(v => double.TryParse(v, out lonValue) && !double.IsNaN(lonValue) ? null : "error")
                 .AddTo(this.disposables);
 
-            this.Weather = new ReactivePropertySlim<Weather>()
+            this.Weather = new ReactivePropertySlim<Weather?>()
                 .AddTo(this.disposables);
 
             this.GetCommand = new[]
@@ -50,9 +50,9 @@ namespace TestPrismDependency.ViewModels
 
         }
 
-        public ReactiveProperty<string> Latitude { get; }
-        public ReactiveProperty<string> Longitude { get; }
-        public ReactivePropertySlim<Weather> Weather { get; }
+        public ReactiveProperty<string?> Latitude { get; }
+        public ReactiveProperty<string?> Longitude { get; }
+        public ReactivePropertySlim<Weather?> Weather { get; }
         public AsyncReactiveCommand GetCommand { get; }
 
         private CompositeDisposable disposables;
